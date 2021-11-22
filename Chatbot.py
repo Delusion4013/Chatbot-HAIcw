@@ -25,6 +25,7 @@ class Chatbot():
         self.GREETING_RESPONSES = ("Hi", "Hey", "*nods*", "Hi there", "hello","Greetings", "I am glad! You are talking to me")
         self.NAME_INPUTS = ("my name is", "i am", "call me", "i'm")
         self.IDENTITY_RESPONSES = ("I will remember you.", "I will keep it in my databse.", "Got you!")
+        self.NAME_ASKING_INPUTS = ("what is my name", "who am i")
 
 
     def greeting(self, sentence):
@@ -39,57 +40,66 @@ class Chatbot():
                 temp_list = sentence.strip().split(entry)
                 for sub in temp_list:
                     if sub == '':
-                        continue;
+                        continue
                     else:
                         self.user['name'] = sub.title()
                         # print(self.user['name'])
                 return random.choice(self.IDENTITY_RESPONSES)
 
-
     def general_pipeline(self):
         # Propose welcome information
-        # Wait for user input
-        # self.user_responses.append(self.current_response)
         flag = True
         while(flag == True): 
+            # Wait for user input
             user_response = input("YOU: ")
             user_response = user_response.lower()
             if(user_response !='bye'):
                 if (user_response =='thanks' or user_response == 'thank you'):
-                    flag == False;
+                    flag == False
                     print("ROBO: You are welcome.")
+                elif (user_response == 'menu' or user_response == 'help'):
+                    self.show_menu()
+                elif (user_response == 'qa'):
+                    # information retriviel
+                    print('information retrieve')
+                elif (user_response == 'games'):
+                    # select games
+                    print('Games')
+                elif (user_response == 'small talk'):
+                    # start small talk
+                    print('Small talk')
+                elif (user_response == 'transaction'):
+                    # transaction system
+                    print('transaction system')
                 else:
                     # Add other subsystem here
                     if(self.greeting(user_response)!=None):
                         print("ROBO: "+ self.greeting(user_response))
-
                     elif(self.identity(user_response)!=None):
                         print("ROBO: "+ self.identity(user_response))
-
                     else:
+                        # print(self.retrieveInfo(user_response))
                         print("ROBO: I am sorry! I don't understand you")
             else:
                 flag = False
                 print("ROBO: Bye! tack care.")
                 self.update_data()
-            
-            # content = self.preprocess(user_response)
-            # intent = IntentClassifier.classify(content)
-                # intent = self.intent_match(self.user_response)
-            # subSystem = self.invoke(intent)
-            # print(subSystem.generate_response())
-            # user_response = input("YOU:        ")
         return
+
+    def show_menu(self):
+        print("1) if you want to ask questions, type [QA]")
+        print("2) if you want to play games, type [games]")
+        print("1) if you want to do some small talks, type [small talk]")
+        print("1) if you want to order something, type [transaction]")
 
     def intent_match(self, current_response):
         # print(current_response)
-        
-
         return
 
     def update_data(self):
         # if (self.)
         # open(self.user_profile_path, 'rw')
+        return
 
 
     def preprocess(self, response):
@@ -131,12 +141,3 @@ class Chatbot():
         
         return ""
 
-
-    # def invoke(self, intent):
-    #     switch(intent):
-    #         case "Identity":
-                
-    #         default:
-    #             return SmallTalkGenerator()
-
-    
