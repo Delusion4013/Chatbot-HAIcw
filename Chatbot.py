@@ -1,4 +1,9 @@
-import random;
+import random
+import nltk
+from nltk.corpus import stopwords
+from nltk.tag import pos_tag
+from nltk.tokenize import word_tokenize
+from nltk.tree import Tree;
 
 
 class Chatbot():
@@ -7,26 +12,32 @@ class Chatbot():
     current_response = []
 
     # User profile
-    user = {}
+    user_name = []
+    name_get = False
 
     # Constants for text matching
     GREETING_INPUTS = ()
     GREETING_RESPONSES = ()
     NAME_INPUTS = ()
-    IDENTITY_RESPONSES = ()
+    IDENTITY_INPUTS = ()
+    IDENTITY_FIRST_RESPONSES = ()
+    IDENTITY_SECOND_RESPONSES = ()
+    GOODBYE_RESPONSES = ()
 
     # Data path
     user_profile_path = "data/user_profile.txt"
 
     def __init__(self):
         print("Robo: Hi! This is Robo, how can I help you?")
+
         # Keyword Matching
         self.GREETING_INPUTS = ("hello", "hi", "greetings", "sup", "what's up","hey","good morning","good afternoon","good evening")
-        self.GREETING_RESPONSES = ("Hi", "Hey", "*nods*", "Hi there", "hello","Greetings", "I am glad! You are talking to me")
+        self.GREETING_RESPONSES = ("Hi", "Hey", "*nods*", "Hi there", "Hello","Greetings", "I am glad to meet you", "")
         self.NAME_INPUTS = ("my name is", "i am", "call me", "i'm")
-        self.IDENTITY_RESPONSES = ("I will remember you.", "I will keep it in my databse.", "Got you!")
-        self.NAME_ASKING_INPUTS = ("what is my name", "who am i")
-
+        self.IDENTITY_FIRST_RESPONSES = ("I will remember you ", "I will keep it in my database ", "Got you! ")
+        self.IDENTITY_SECOND_RESPONSES = ("I remember you, you are ", "I find it in my database, ", "Nice seeing you again!")
+        self.IDENTITY_INPUTS = ("what is my name?", "who am i")
+        self.GOODBYE_RESPONSES = ("Bye! Take care.", "See you soon!", "Have a nice day!", "Enjoy your day!")
 
     def greeting(self, sentence):
         # Intent matching done by text matching
@@ -34,17 +45,26 @@ class Chatbot():
             if word.lower() in self.GREETING_INPUTS:
                 return random.choice(self.GREETING_RESPONSES)
 
+    def goodbye(self):
+        return random.choice(self.GOODBYE_RESPONSES)
+
     def identity(self, sentence):
-        for entry in self.NAME_INPUTS:
-            if sentence.find(entry) != -1:
-                temp_list = sentence.strip().split(entry)
-                for sub in temp_list:
-                    if sub == '':
-                        continue
-                    else:
-                        self.user['name'] = sub.title()
-                        # print(self.user['name'])
-                return random.choice(self.IDENTITY_RESPONSES)
+        words = word_tokenize(sentence)
+        print(words)
+        tokens_without_sw = [word.title() for word in words
+                                if word not in stopwords.words()] # stop words removal
+        print(tokens_without_sw)
+        postags = pos_tag(tokens_without_sw)
+        word_tags = nltk.ne_chunk(postags, binary=False)
+        for tag in word_tags:
+            if type(tag) == Tree and tag.label() == 'PERSON':
+                for item in tag:
+                    self.user_name.append(item[0])
+
+        if self.user_name:
+            self.name_get = True
+        if self.name_get:
+            print("ROBO: " + random.choice(self.IDENTITY_FIRST_RESPONSES) + ' '.join(self.user_name))
 
     def general_pipeline(self):
         # Propose welcome information
@@ -53,6 +73,7 @@ class Chatbot():
             # Wait for user input
             user_response = input("YOU: ")
             user_response = user_response.lower()
+            # Intent matching
             if(user_response !='bye'):
                 if (user_response =='thanks' or user_response == 'thank you'):
                     flag == False
@@ -71,26 +92,29 @@ class Chatbot():
                 elif (user_response == 'transaction'):
                     # transaction system
                     print('transaction system')
+                elif(self.greeting(user_response)!=None):
+                    print("ROBO: "+ self.greeting(user_response))
+                elif(user_response in self.IDENTITY_INPUTS):
+                    if self.name_get == True:
+                        print("ROBO: " + random.choice(self.IDENTITY_SECOND_RESPONSES) + ' '.join(self.user_name))
+                    elif self.name_get == False:
+                        print("ROBO: You didn't tell me your name! Please tell me and I will keep it down.")
+                        user_response = input("YOU: ")
+                        self.identity(user_response)
                 else:
-                    # Add other subsystem here
-                    if(self.greeting(user_response)!=None):
-                        print("ROBO: "+ self.greeting(user_response))
-                    elif(self.identity(user_response)!=None):
-                        print("ROBO: "+ self.identity(user_response))
-                    else:
-                        # print(self.retrieveInfo(user_response))
-                        print("ROBO: I am sorry! I don't understand you")
+                    # print(self.retrieveInfo(user_response))
+                    print("ROBO: I am sorry! I don't understand you")
             else:
                 flag = False
-                print("ROBO: Bye! tack care.")
+                print("ROBO: " + self.goodbye())
                 self.update_data()
         return
 
     def show_menu(self):
         print("1) if you want to ask questions, type [QA]")
         print("2) if you want to play games, type [games]")
-        print("1) if you want to do some small talks, type [small talk]")
-        print("1) if you want to order something, type [transaction]")
+        print("3) if you want to do some small talks, type [small talk]")
+        print("4) if you want to order something, type [transaction]")
 
     def intent_match(self, current_response):
         # print(current_response)
@@ -103,10 +127,8 @@ class Chatbot():
 
 
     def preprocess(self, response):
-        # print("Preprocessing " + response)
 
         # Pipeline: Tokenize -> POS tagging -> Stemming/Lemmatization -> Stopwords filtering
-
         # Tokenize
         import nltk
         from nltk.tokenize import word_tokenize
@@ -114,7 +136,6 @@ class Chatbot():
         tokenized_response = word_tokenize(response)
 
         # POS tagging
-
         tagged_response = nltk.pos_tag(tokenized_response, tagset="universal")
 
         posmap = {
@@ -126,12 +147,9 @@ class Chatbot():
 
         # Stemming
 
-
         # Lemmatization
 
-
         # Stopwords filtering
-        from nltk.corpus import stopwords
         tokens_without_sw = [word.lower() for word in tokenized_response if not word in stopwords.words()]
         print(tokens_without_sw)
         
