@@ -109,11 +109,14 @@ def word_guessing():
     print("You Loose")
     print("The word is: ", original_word)
 
+def small_adventure():
+    print("adventure")
+
 def game_selection(user_name):
     print("ROBO: which game do you want to play?")
-    print("\t1) small adventures")
+    print("\t1) little quiz")
     print("\t2) word guessing")
-    print("\t3) little quiz")
+    print("\t3) small adventure")
 
     selection = input("YOU: ")
 
@@ -127,7 +130,10 @@ def game_selection(user_name):
         print ("ROBO: OK, " +  name + ", let's get started.")
         text_quiz(name)
     elif selection == "word guessing":
-        print("Good Luck! " + name)
-        word_guessing(name)
+        print("ROBO: Good Luck! " + name)
+        word_guessing()
+    elif selection == "small adventure":
+        print("ROBO: Let's go! " + name)
+        small_adventure()
 
     return name
