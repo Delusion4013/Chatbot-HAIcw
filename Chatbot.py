@@ -4,6 +4,7 @@ from nltk.corpus import stopwords
 from nltk.tag import pos_tag
 from nltk.tokenize import word_tokenize
 from nltk.tree import Tree;
+import game
 
 
 class Chatbot():
@@ -35,7 +36,7 @@ class Chatbot():
         self.GREETING_RESPONSES = ("Hi", "Hey", "*nods*", "Hi there", "Hello","Greetings", "I am glad to meet you", "")
         self.NAME_INPUTS = ("my name is", "i am", "call me", "i'm")
         self.IDENTITY_FIRST_RESPONSES = ("I will remember you ", "I will keep it in my database ", "Got you! ")
-        self.IDENTITY_SECOND_RESPONSES = ("I remember you, you are ", "I find it in my database, ", "Nice seeing you again!")
+        self.IDENTITY_SECOND_RESPONSES = ("I remember you, you are ", "I find it in my database, ", "Nice seeing you again! ")
         self.IDENTITY_INPUTS = ("what is my name?", "who am i")
         self.GOODBYE_RESPONSES = ("Bye! Take care.", "See you soon!", "Have a nice day!", "Enjoy your day!")
 
@@ -50,21 +51,24 @@ class Chatbot():
 
     def identity(self, sentence):
         words = word_tokenize(sentence)
-        print(words)
+        # print(words)
         tokens_without_sw = [word.title() for word in words
                                 if word not in stopwords.words()] # stop words removal
-        print(tokens_without_sw)
+        # print(tokens_without_sw)
         postags = pos_tag(tokens_without_sw)
         word_tags = nltk.ne_chunk(postags, binary=False)
         for tag in word_tags:
             if type(tag) == Tree and tag.label() == 'PERSON':
                 for item in tag:
-                    self.user_name.append(item[0])
+                    self.user_name.append(item[0] + '')
+        print(self.user_name)
 
         if self.user_name:
             self.name_get = True
         if self.name_get:
-            print("ROBO: " + random.choice(self.IDENTITY_FIRST_RESPONSES) + ' '.join(self.user_name))
+            print(type(self.user_name))
+            self.user_name = ' '.join(self.user_name)
+            print("ROBO: " + random.choice(self.IDENTITY_FIRST_RESPONSES) + self.user_name)
 
     def general_pipeline(self):
         # Propose welcome information
@@ -85,7 +89,9 @@ class Chatbot():
                     print('information retrieve')
                 elif (user_response == 'games'):
                     # select games
-                    print('Games')
+                    # print('Games')
+                    self.user_name = game.game_selection(self.user_name)
+                    self.name_get = True
                 elif (user_response == 'small talk'):
                     # start small talk
                     print('Small talk')
@@ -96,7 +102,7 @@ class Chatbot():
                     print("ROBO: "+ self.greeting(user_response))
                 elif(user_response in self.IDENTITY_INPUTS):
                     if self.name_get == True:
-                        print("ROBO: " + random.choice(self.IDENTITY_SECOND_RESPONSES) + ' '.join(self.user_name))
+                        print("ROBO: " + random.choice(self.IDENTITY_SECOND_RESPONSES) + self.user_name)
                     elif self.name_get == False:
                         print("ROBO: You didn't tell me your name! Please tell me and I will keep it down.")
                         user_response = input("YOU: ")

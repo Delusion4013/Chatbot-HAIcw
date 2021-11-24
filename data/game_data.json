@@ -1,0 +1,23 @@
+{
+    "questions":
+    [
+        {"Problem": "Paris is the captial of France.", "Answer":"True"},
+        {"Problem": "London is the capital of United Kindom.", "Answer":"True"},
+        {"Problem": "Nottingham is the capital of United Kindom.", "Answer":"False"},
+        {"Problem": "Beijing is the capital of China.", "Answer":"True"},
+        {"Problem": "New York is the capital of United States.", "Answer":"False"},
+        {"Problem": "Water boils at 100 Celsius Degree.", "Answer":"True"},
+        {"Problem": "The Sun rises from the west.", "Answer":"False"},
+        {"Problem": "Whales can be found in forest.", "Answer":"False"},
+        {"Problem": "Deers can be found in ocean.", "Answer":"False"},
+        {"Problem": "Oliver Twist was written by Charles Dickens", "Answer":"True"}
+    ],
+
+    "words":
+    [
+        "rainbow", "computer", "science", "programming",
+        "python", "mathematics", "player", "condition",
+        "reverse", "water", "board", "geeks", "aritificial"
+    ]
+
+}
