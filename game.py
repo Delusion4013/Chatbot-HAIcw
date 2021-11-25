@@ -1,24 +1,28 @@
+import time
 import json
 import random
+import systems.adventure.mainGame as ag
 
-def text_quiz(user_name):
-    # https://www.derekshidler.com/how-to-create-a-text-based-adventure-and-quiz-game-in-python/
-    import time
+def text_quiz():
+    """
+        Perform a round of quiz game.
+
+        Returns: return the player's score after the quiz.
+    """
 
     TRUE_RESPONSE = ["t", "true", "yes", "y"]
     FALSE_RESPONSE = ["f", "false","no", "n"]
 
-
     print ("ROBO: Remember, the following answers are only True or False.")
     print ("Evaluating your intelligence level...")
-    time.sleep(0.5)
+    time.sleep(0.3)
     print ("Searching database for quiz problems...")
-    time.sleep(2)
+    time.sleep(0.5)
     
     # Load questions from the database
     with open('data/game_data.json', "r") as quiz_dataset:
         quiz = json.load(quiz_dataset)
-        slice = random.sample(quiz['questions'],5)    
+        slice = random.sample(quiz['questions'],5)    # Randomly select 5 questions from the database
 
     correct = 0 #Storing the correct answers
     for item in slice:
@@ -26,6 +30,7 @@ def text_quiz(user_name):
         while not_answered:
             print("\n" + item['Problem'])
             choice = input("YOU: ").lower()
+            # A mechanism to ban invalid answers
             try:
                 if (choice in TRUE_RESPONSE):
                     correct += item['Answer'] == "True"
@@ -38,23 +43,22 @@ def text_quiz(user_name):
                 print ("ROBO: I am crude so I will take it as an wrong answer. Just kidding :P.")
             else:
                 not_answered = False
-    print ("ROBO: You're finished, " + user_name + ". You got", correct, "out of 5 correct.")
+    return correct
 
 def word_guessing():
-    # https://www.geeksforgeeks.org/python-program-for-word-guessing-game/
-    # https://medium.com/@4k45hr0ck5007/word-guessing-game-in-python-e30f7b176e32
-    # library that we use in order to choose
-    # on random words from a list of words
-
+    """
+        Perform a round of word gueesing game.
+    """
     with open('data/game_data.json', "r") as f:
-        # Function will choose one random word from this list of words
         game_words = json.load(f)
+        # Function will choose one random word from this list of words
         original_word = random.choice(game_words['words'])
         
     print(f"The word is of {len(original_word)} letters. ")
 
-    wrong_list = []     # Record the letters guessed
-    guessed_word = []   # Record the guessed word
+    wrong_list = []     # Record the wrong letters guessed
+    guessed_list = []   # Record the letters guessed
+    guessed_word = []   # Record the guessed part of original_word
 
     for i in range(len(original_word)):
         guessed_word.append("_")
@@ -70,26 +74,29 @@ def word_guessing():
         # word taking one at a time.
 
         valid_input = True
+        print()
         print(*([i for i in guessed_word]))
         guess = input("\nGuess a character:")
         while valid_input:
             if not guess.isalpha():
-                print('Guess only a letter')
+                print('Guess only a letter...')
             #check if guessed letter length is one or not
             elif(len(guess)>1):
                 print('Guess only one letter...')
             #check that letter chosen by user is already guessed or not
-            elif(guess in wrong_list):
+            elif(guess in wrong_list or guess in guessed_list):
                 print('You have already guessed this letter')
             else:
                 valid_input = True
                 break
+            print()
             print(*([i for i in guessed_word]))
             guess = input("\nRe-enter your guess:")
 
         turns -= 1
         #check if guess is matches with original_word
         if guess in original_word:
+            guessed_list.append(guess)
             for i in range(len(original_word)):
                 if original_word[i] == guess:
                     guessed_word[i]=original_word[i] 
@@ -105,35 +112,41 @@ def word_guessing():
             print("The word is: ", original_word)
             return
      
-    # if the character doesn’t match the word
+    # if the user used up his/her turn
     print("You Loose")
     print("The word is: ", original_word)
 
-def small_adventure():
-    print("adventure")
-
-def game_selection(user_name):
-    print("ROBO: which game do you want to play?")
+def pipeline(user_name, robot_name):
+    """
+        General procedure for this sub system.
+    """
+    print(robot_name + ": which game do you want to play?")
     print("\t1) little quiz")
     print("\t2) word guessing")
     print("\t3) small adventure")
 
-    selection = input("YOU: ")
+    selection = input("> ")
 
     if not user_name:
-        print("ROBO: Before we start the game, please tell me your name.")
-        name = input ("YOU: ") #Storing the user's name
+        print(robot_name + ": Before we start the game, please tell me your name.")
+        name = input ("> ") #Storing the user's name
     else:
         name = user_name
 
-    if selection == "little quiz":
-        print ("ROBO: OK, " +  name + ", let's get started.")
-        text_quiz(name)
-    elif selection == "word guessing":
-        print("ROBO: Good Luck! " + name)
+    if selection == "little quiz" or selection == '1':
+        print (robot_name + ": OK, " +  name + ", let's get started.")
+        res = text_quiz()
+        print (robot_name + ": You're finished, " + user_name + ". You got", res, "out of 5 correct.")
+
+    elif selection == "word guessing" or selection == '2':
+        print(robot_name + ": Good Luck! " + name)
         word_guessing()
-    elif selection == "small adventure":
-        print("ROBO: Let's go! " + name)
-        small_adventure()
+
+    elif selection == "small adventure" or selection == '3':
+        print(robot_name + ": Let's go! " + name)
+        ag.pipeline()
 
     return name
+
+# To test the sub system, invoke pipeline here
+pipeline("Chenkai", "Jarvis")

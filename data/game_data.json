@@ -10,14 +10,17 @@
         {"Problem": "The Sun rises from the west.", "Answer":"False"},
         {"Problem": "Whales can be found in forest.", "Answer":"False"},
         {"Problem": "Deers can be found in ocean.", "Answer":"False"},
-        {"Problem": "Oliver Twist was written by Charles Dickens", "Answer":"True"}
+        {"Problem": "Oliver Twist was written by Charles Dickens", "Answer":"True"},
+        {"Problem": "Newton discovered The Three Basic Laws of Mechanics", "Answer":"True"}
+        
     ],
 
     "words":
     [
         "rainbow", "computer", "science", "programming",
         "python", "mathematics", "player", "condition",
-        "reverse", "water", "board", "geeks", "aritificial"
+        "reverse", "water", "board", "geeks", "aritificial",
+        "universe","galaxy"
     ]
 
 }
