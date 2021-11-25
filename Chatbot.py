@@ -4,7 +4,9 @@ from nltk.corpus import stopwords
 from nltk.tag import pos_tag
 from nltk.tokenize import word_tokenize
 from nltk.tree import Tree;
+
 import game
+import information_retrieval as ir
 
 
 class Chatbot():
@@ -86,7 +88,8 @@ class Chatbot():
                     self.show_menu()
                 elif (user_response == 'qa'):
                     # information retriviel
-                    print('information retrieve')
+                    # print('information retrieve')
+                    ir.pipeline()
                 elif (user_response == 'games'):
                     # select games
                     # print('Games')
