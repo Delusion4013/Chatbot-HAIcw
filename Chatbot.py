@@ -6,7 +6,7 @@ from nltk.tokenize import word_tokenize
 from nltk.tree import Tree;
 
 import game
-import information_retrieval as ir
+import systems.information_retrieval as ir
 
 
 class Chatbot():
@@ -90,6 +90,7 @@ class Chatbot():
                     # information retriviel
                     # print('information retrieve')
                     ir.pipeline()
+
                 elif (user_response == 'games'):
                     # select games
                     # print('Games')
