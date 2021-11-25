@@ -5,8 +5,8 @@ from nltk.tag import pos_tag
 from nltk.tokenize import word_tokenize
 from nltk.tree import Tree;
 
-import game
-import systems.information_retrieval as ir
+import systems.game as game
+import systems.information_retrieval as IR
 
 
 class Chatbot():
@@ -17,6 +17,7 @@ class Chatbot():
     # User profile
     user_name = []
     name_get = False
+    robot_name = "Jarvis"
 
     # Constants for text matching
     GREETING_INPUTS = ()
@@ -88,13 +89,9 @@ class Chatbot():
                     self.show_menu()
                 elif (user_response == 'qa'):
                     # information retriviel
-                    # print('information retrieve')
-                    ir.pipeline()
-
+                    IR.pipeline()
                 elif (user_response == 'games'):
-                    # select games
-                    # print('Games')
-                    self.user_name = game.game_selection(self.user_name)
+                    self.user_name = game.pipeline(self.user_name, self.robot_name)
                     self.name_get = True
                 elif (user_response == 'small talk'):
                     # start small talk
@@ -130,42 +127,8 @@ class Chatbot():
         # print(current_response)
         return
 
-    def update_data(self):
+    def update_database(self):
         # if (self.)
         # open(self.user_profile_path, 'rw')
         return
-
-
-    def preprocess(self, response):
-
-        # Pipeline: Tokenize -> POS tagging -> Stemming/Lemmatization -> Stopwords filtering
-        # Tokenize
-        import nltk
-        from nltk.tokenize import word_tokenize
-
-        tokenized_response = word_tokenize(response)
-
-        # POS tagging
-        tagged_response = nltk.pos_tag(tokenized_response, tagset="universal")
-
-        posmap = {
-            'ADJ': 'j',
-            'ADV': 'r',
-            'NOUN': 'n',
-            'VERB': 'v'
-        }
-
-        # Stemming
-
-        # Lemmatization
-
-        # Stopwords filtering
-        tokens_without_sw = [word.lower() for word in tokenized_response if not word in stopwords.words()]
-        print(tokens_without_sw)
-        
-        filtered_sentence = (" ").join(tokens_without_sw)
-        print(filtered_sentence)
-
-        
-        return ""
 

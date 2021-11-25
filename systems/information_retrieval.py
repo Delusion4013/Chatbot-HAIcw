@@ -108,23 +108,23 @@ def parseAnswer(index, is_question):
         res = f"\nFounded the most relevant information in database.\n{answers[index-1]}\n"
     return res
 
-def pipeline():
+def pipeline(robot_name):
     """
         General procedure for this sub system.
     """
     warnings.filterwarnings('ignore')
-    print("ROBO: Welcome to search questions. Just type your query in.")
-    print("ROBO: If you are done, Type [Close] to exit.")
+    print(robot_name + ": Welcome to search questions. Just type your query in.")
+    print(robot_name + ": If you are done, Type [Close] to exit.")
     flag = True
     while(flag == True):
         user_response = input("> ")
         user_response = user_response.lower()
-        print('ROBO: Searching.....')
+        print(robot_name + ': Searching.....')
         if (user_response != 'close'):
             print(response(user_response))
         else:
             flag = False
-            print("ROBO: Wish the information is helpful~")
+            print(robot_name + ": Wish the information is helpful~")
 
 # To test the sub system, invoke pipeline here
 # pipeline()
