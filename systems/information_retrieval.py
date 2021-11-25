@@ -105,7 +105,7 @@ def parseAnswer(index, is_question):
     if is_question:
         res = f"\nFounded the most relevant question in database.\n\nQ: {questions[index-1]}?\nA: {answers[index-1]}\n"
     else:
-        res = f"\nFounded the most relevant information in database.\n{answers[index-1]}\n"
+        res = f"\nFounded the most relevant information in database.\n\n{answers[index-1]}\n"
     return res
 
 def pipeline(robot_name):
@@ -119,12 +119,12 @@ def pipeline(robot_name):
     while(flag == True):
         user_response = input("> ")
         user_response = user_response.lower()
-        print(robot_name + ': Searching.....')
         if (user_response != 'close'):
+            print(robot_name + ': Searching.....')
             print(response(user_response))
         else:
             flag = False
             print(robot_name + ": Wish the information is helpful~")
 
 # To test the sub system, invoke pipeline here
-# pipeline()
+# pipeline("Jarvis")
