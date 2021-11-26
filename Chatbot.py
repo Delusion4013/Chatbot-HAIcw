@@ -7,21 +7,23 @@ from nltk.tree import Tree;
 
 import systems.game as game
 import systems.information_retrieval as IR
+import systems.small_talk as ST
 
 
 class Chatbot():
 
-    user_responses = []
-    current_response = []
+    user_responses = []     # user's response stack used to track context
+                            # not implemented in this chatbot.
+    current_response = ""   # The latest user's response
 
     # User profile
     user_name = []
     name_get = False
-    robot_name = "Jarvis"
+    
+    # Bot profile
+    robot_name = "ROBO"
 
     # Constants for text matching
-    GREETING_INPUTS = ()
-    GREETING_RESPONSES = ()
     NAME_INPUTS = ()
     IDENTITY_INPUTS = ()
     IDENTITY_FIRST_RESPONSES = ()
@@ -31,23 +33,14 @@ class Chatbot():
     # Data path
     user_profile_path = "data/user_profile.txt"
 
-    def __init__(self):
-        print("Robo: Hi! This is Robo, how can I help you?")
-
+    def __init__(self, robot_name):
         # Keyword Matching
-        self.GREETING_INPUTS = ("hello", "hi", "greetings", "sup", "what's up","hey","good morning","good afternoon","good evening")
-        self.GREETING_RESPONSES = ("Hi", "Hey", "*nods*", "Hi there", "Hello","Greetings", "I am glad to meet you", "")
         self.NAME_INPUTS = ("my name is", "i am", "call me", "i'm")
         self.IDENTITY_FIRST_RESPONSES = ("I will remember you ", "I will keep it in my database ", "Got you! ")
         self.IDENTITY_SECOND_RESPONSES = ("I remember you, you are ", "I find it in my database, ", "Nice seeing you again! ")
         self.IDENTITY_INPUTS = ("what is my name?", "who am i")
         self.GOODBYE_RESPONSES = ("Bye! Take care.", "See you soon!", "Have a nice day!", "Enjoy your day!")
-
-    def greeting(self, sentence):
-        # Intent matching done by text matching
-        for word in sentence.split():
-            if word.lower() in self.GREETING_INPUTS:
-                return random.choice(self.GREETING_RESPONSES)
+        self.robot_name = robot_name
 
     def goodbye(self):
         return random.choice(self.GOODBYE_RESPONSES)
@@ -74,7 +67,10 @@ class Chatbot():
             print("ROBO: " + random.choice(self.IDENTITY_FIRST_RESPONSES) + self.user_name)
 
     def general_pipeline(self):
+
         # Propose welcome information
+        print(self.robot_name + ": Hi! This is " + self.robot_name + ", how can I help you?")
+
         flag = True
         while(flag == True): 
             # Wait for user input
@@ -82,39 +78,11 @@ class Chatbot():
             user_response = user_response.lower()
             # Intent matching
             if(user_response !='bye'):
-                if (user_response =='thanks' or user_response == 'thank you'):
-                    flag == False
-                    print("ROBO: You are welcome.")
-                elif (user_response == 'menu' or user_response == 'help'):
-                    self.show_menu()
-                elif (user_response == 'qa'):
-                    # information retriviel
-                    IR.pipeline()
-                elif (user_response == 'games'):
-                    self.user_name = game.pipeline(self.user_name, self.robot_name)
-                    self.name_get = True
-                elif (user_response == 'small talk'):
-                    # start small talk
-                    print('Small talk')
-                elif (user_response == 'transaction'):
-                    # transaction system
-                    print('transaction system')
-                elif(self.greeting(user_response)!=None):
-                    print("ROBO: "+ self.greeting(user_response))
-                elif(user_response in self.IDENTITY_INPUTS):
-                    if self.name_get == True:
-                        print("ROBO: " + random.choice(self.IDENTITY_SECOND_RESPONSES) + self.user_name)
-                    elif self.name_get == False:
-                        print("ROBO: You didn't tell me your name! Please tell me and I will keep it down.")
-                        user_response = input("YOU: ")
-                        self.identity(user_response)
-                else:
-                    # print(self.retrieveInfo(user_response))
-                    print("ROBO: I am sorry! I don't understand you")
+                self.intent_match(user_response)
             else:
                 flag = False
-                print("ROBO: " + self.goodbye())
-                self.update_data()
+                self.robo_utter(self.goodbye())
+                self.update_database()
         return
 
     def show_menu(self):
@@ -123,9 +91,42 @@ class Chatbot():
         print("3) if you want to do some small talks, type [small talk]")
         print("4) if you want to order something, type [transaction]")
 
-    def intent_match(self, current_response):
-        # print(current_response)
+    def intent_match(self, user_response):
+        """
+            Matches user's intent based on keywords and patterns. 
+            Then invoke the relevant sub systems.
+        """
+
+        if (user_response == 'menu' or user_response == 'help'):
+            self.show_menu()
+        elif (user_response == 'qa' or user_response == 'IR'):
+            IR.pipeline()
+        elif (user_response == 'games'):
+            self.user_name = game.pipeline(self.user_name, self.robot_name)
+            self.name_get = True
+        # elif (user_response == 'transaction'):
+        #     # transaction system
+        #     print('transaction system')
+        elif (ST.pipeline(user_response) != None):
+            self.robo_utter(ST.pipeline(user_response))
+        elif (user_response =='thanks' or user_response == 'thank you'):
+            print("ROBO: You are welcome.")
+        elif(user_response in self.IDENTITY_INPUTS):
+            if self.name_get == True:
+                self.robo_utter(random.choice(self.IDENTITY_SECOND_RESPONSES) + self.user_name)
+            elif self.name_get == False:
+                self.robo_utter("You didn't tell me your name! Please tell me and I will keep it down.")
+                user_response = input("YOU: ")
+                self.identity(user_response)
+        else:
+            self.robo_utter("I am sorry! I don't understand you.")
         return
+
+    def robo_utter(self, utterance):
+        """
+            Customize chatbot's prompts by using pre-set robot name.
+        """
+        print(self.robot_name + ": " + utterance)
 
     def update_database(self):
         # if (self.)
