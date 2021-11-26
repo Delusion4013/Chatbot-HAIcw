@@ -9,12 +9,19 @@ import warnings
 import json
     
 def LemTokens(tokens):
+    """
+        Customized pre-processor which use WordNetLemmatizer for lemmatization
+
+        Used in LemNormalize() method
+    """
     lemmer = WordNetLemmatizer()
     return [lemmer.lemmatize(token) for token in tokens]
 
 def LemNormalize(text):
     """
-        Customized lemmatizer
+        Customized lemmatizer for IR system which excludes punctuations in the input.
+
+        Used in search() method for model creation.
     """
     remove_punct_dict = dict((ord(punct), None) for punct in string.punctuation)
     return LemTokens(nltk.word_tokenize(text.lower().translate(remove_punct_dict)))

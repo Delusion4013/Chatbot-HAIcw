@@ -31,11 +31,17 @@ class Chatbot():
 
     def __init__(self, robot_name):
         # Keyword Matching
+        self.NAME_INPUTS = ("my name is", "i am", "call me", "i'm")
         self.IDENTITY_INPUTS = ("what is my name?", "who am i?","what is my name", "who am i")
         self.GOODBYE_RESPONSES = ("Bye! Take care.", "See you soon!", "Have a nice day!", "Enjoy your day!")
         self.robot_name = robot_name
         
     def init_profile(self):    
+        """
+            Load pre-recorded user-profile in the database.
+
+            To test IM's input function, this function are disabled by default.
+        """
         with open(self.user_profile_path, 'r', encoding='utf8', errors='ignore') as fin:
             profile = json.load(fin)
             if profile['Name'] != "":
@@ -57,12 +63,19 @@ class Chatbot():
         print(self.robot_name + ": " + utterance)
 
     def update_database(self):
+        """
+            A simple function used to store the identity information extracted 
+            during the conversation with user.
+        """
         profile = {'Name': self.user_name}
         with open(self.user_profile_path, "w") as f:
             json.dump(profile, f, indent=4)
         return
 
     def goodbye(self):
+        """
+            Return a randomly selected goodbye string.
+        """
         return random.choice(self.GOODBYE_RESPONSES)
 
     def intent_match(self, user_response):
@@ -93,7 +106,7 @@ class Chatbot():
             The general procedure for chatbot taking in user input and generates response.
         """
 
-        self.init_profile()
+        # self.init_profile()           # disabled for testing
         # Propose welcome information
         print(self.robot_name + ": Hi! This is " + self.robot_name + ", how can I help you?")
 

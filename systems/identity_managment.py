@@ -41,6 +41,11 @@ def identity(sentence):
 def pipeline(robot_name, userName, nameGet):
     """
         General procedure for this sub system.
+
+        The input variables are:
+            - robot_name: currently operating chatbot's name
+            - userName: previously stored name, "" by default
+            - nameGet: boolean variable indicating whether user name have been acquired.
     """
 
     IDENTITY_FIRST_RESPONSES = ("I will remember you ", "I will keep it in my database ", "Got you! ")

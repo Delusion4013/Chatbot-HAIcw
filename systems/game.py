@@ -3,6 +3,9 @@ import json
 import random
 
 def text_quiz(robot_name):
+    """
+        Perform a round of quiz game.
+    """
     TRUE_RESPONSE = ["t", "true", "yes", "y"]
     FALSE_RESPONSE = ["f", "false","no", "n"]
 
