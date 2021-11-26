@@ -1,19 +1,12 @@
 import time
 import json
 import random
-import systems.adventure.mainGame as ag
 
-def text_quiz():
-    """
-        Perform a round of quiz game.
-
-        Returns: return the player's score after the quiz.
-    """
-
+def text_quiz(robot_name):
     TRUE_RESPONSE = ["t", "true", "yes", "y"]
     FALSE_RESPONSE = ["f", "false","no", "n"]
 
-    print ("ROBO: Remember, the following answers are only True or False.")
+    print (robot_name + ": Remember, the following answers are only True or False.")
     print ("Evaluating your intelligence level...")
     time.sleep(0.3)
     print ("Searching database for quiz problems...")
@@ -22,14 +15,16 @@ def text_quiz():
     # Load questions from the database
     with open('data/game_data.json', "r") as quiz_dataset:
         quiz = json.load(quiz_dataset)
-        slice = random.sample(quiz['questions'],5)    # Randomly select 5 questions from the database
-
-    correct = 0 #Storing the correct answers
+        # Randomly select 5 questions from the database
+        slice = random.sample(quiz['questions'],5)    
+    
+    # Storing the correct answers count
+    correct = 0 
     for item in slice:
         not_answered = True
         while not_answered:
             print("\n" + item['Problem'])
-            choice = input("YOU: ").lower()
+            choice = input("> ").lower()
             # A mechanism to ban invalid answers
             try:
                 if (choice in TRUE_RESPONSE):
@@ -39,8 +34,8 @@ def text_quiz():
                 else:
                     raise Exception("Invalid input", choice) 
             except Exception:
-                print("\nROBO: Please enter [True/Flase],[Yes/No] for answers.")
-                print ("ROBO: I am crude so I will take it as an wrong answer. Just kidding :P.")
+                print("\n" + robot_name + ": Please enter [True/Flase],[Yes/No] for answers.")
+                print (robot_name + ": I am crude so I will take it as an wrong answer. Just kidding :P.")
             else:
                 not_answered = False
     return correct
@@ -135,7 +130,7 @@ def pipeline(user_name, robot_name):
 
     if selection == "little quiz" or selection == '1':
         print (robot_name + ": OK, " +  name + ", let's get started.")
-        res = text_quiz()
+        res = text_quiz(robot_name)
         print (robot_name + ": You're finished, " + user_name + ". You got", res, "out of 5 correct.")
 
     elif selection == "word guessing" or selection == '2':
@@ -144,7 +139,9 @@ def pipeline(user_name, robot_name):
 
     elif selection == "small adventure" or selection == '3':
         print(robot_name + ": Let's go! " + name)
-        ag.pipeline()
+        time.sleep(1)
+        print(robot_name + ": Changed my mind. I am too afraid. TvT")
+        print(robot_name + ": Check this website for adventure: https://play.aidungeon.io/")
 
     return name
 
