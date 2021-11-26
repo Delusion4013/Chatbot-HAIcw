@@ -1,0 +1,114 @@
+Standard inputs 1
+--------------------------------------------------------------------------------
+(ml) chenkaihu@ChenkaideMacBook-Pro Chatbot-HAIcw % python main.py
+
+Jarvis: Hi! This is Jarvis, how can I help you?
+YOU: hi
+Jarvis: Hi
+YOU: help
+1) if you want to ask questions, type [qa]
+2) if you want to play games, type [games]
+YOU: qa
+Jarvis: Welcome to search questions. Just type your query in.
+Jarvis: If you are done, Type [Close] to exit.
+> antibodies binding mechanism
+Jarvis: Searching.....
+
+Founded the most relevant information in database.
+
+Using this binding mechanism, an antibody can tag a microbe or an infected cell for attack by other parts of the immune system, or can neutralize its target directly (for example, by blocking a part of a microbe that is essential for its invasion and survival).
+
+> close
+Jarvis: Wish the information is helpful~
+YOU: Thank you
+Jarvis: You are welcome.
+YOU: Bye
+Jarvis: Have a nice day!
+--------------------------------------------------------------------------------
+
+
+
+User inputs 1 - small talk + IM + small talk
+--------------------------------------------------------------------------------
+Jarvis: Hi! This is Jarvis, how can I help you?
+YOU: greetings
+Jarvis: *nods*
+YOU: Who am i?
+Jarvis: You didn't tell me your name! Please tell me and I will keep it down.
+> Steven
+Jarvis: No name detected in former input. Please try again...
+Jarvis: Type [quit] to terminate this process.
+> Steve
+Jarvis: Got you! Steve
+YOU: how's the weather
+Jarvis: A cloudy day.
+YOU: how are you
+Jarvis: Just so so.
+YOU: Bye 
+Jarvis: Bye! Take care.
+--------------------------------------------------------------------------------
+
+
+User inputs 2 - small talk + games + IM
+--------------------------------------------------------------------------------
+Jarvis: Hi! This is Jarvis, how can I help you?
+YOU: good morning!
+Jarvis: I am glad to meet you
+YOU: help
+1) if you want to ask questions, type [qa]
+2) if you want to play games, type [games]
+YOU: gams
+Jarvis: I am sorry! I don't understand you.
+YOU: games
+Jarvis: which game do you want to play?
+        1) little quiz
+        2) word guessing
+        3) small adventure
+> 3
+Jarvis: Before we start the game, please tell me your name.
+> Steve
+Jarvis: Let's go! Steve
+Jarvis: Changed my mind. I am too afraid. TvT
+Jarvis: Check this website for adventure: https://play.aidungeon.io/
+YOU: what is my name?
+Jarvis: I remember you, you are Steve
+YOU: bye
+Jarvis: See you soon!
+--------------------------------------------------------------------------------
+
+
+User inputs 3 - menu + qa + IM + games
+--------------------------------------------------------------------------------
+Jarvis: Hi! This is Jarvis, how can I help you?
+YOU: help
+1) if you want to ask questions, type [qa]
+2) if you want to play games, type [games]
+YOU: qa
+Jarvis: Welcome to search questions. Just type your query in.
+Jarvis: If you are done, Type [Close] to exit.
+> how to score high mark in coursework?
+Jarvis: Searching.....
+
+Founded the most relevant question in database.
+
+Q: where is mark sanchez from?
+A: Mark Travis John Sanchez (born November 11, 1986) is an American football quarterback for the New York Jets of the National Football League (NFL).
+
+> close
+Jarvis: Wish the information is helpful~
+YOU: who am i?
+Jarvis: You didn't tell me your name! Please tell me and I will keep it down.
+> Call me Bob
+Jarvis: I will keep it in my database Bob
+YOU: games
+Jarvis: which game do you want to play?
+        1) little quiz
+        2) word guessing
+        3) small adventure
+> 3
+Jarvis: Let's go! Bob
+Jarvis: Changed my mind. I am too afraid. TvT
+Jarvis: Check this website for adventure: https://play.aidungeon.io/
+YOU: bye
+Jarvis: Bye! Take care.
+--------------------------------------------------------------------------------

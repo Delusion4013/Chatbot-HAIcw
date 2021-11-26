@@ -7,6 +7,7 @@ YOU: what is my name?
 Jarvis: I find it in my database, Chenkai
 YOU: bye
 Jarvis: Enjoy your day!
+--------------------------------------------------------------------------------
 
 
 Standard inputs - 2 Simple valid inputs 
@@ -22,6 +23,7 @@ YOU: what is my name?
 Jarvis: I find it in my database, Chenkai Hu
 YOU: bye
 Jarvis: Have a nice day!
+--------------------------------------------------------------------------------
 
 
 Standard inputs - 3 Simple invalid inputs (Name cannot be tagged)
@@ -43,6 +45,7 @@ YOU: who am i?
 Jarvis: Nice seeing you again! Chenkai Hu
 YOU: bye
 Jarvis: Enjoy your day!
+--------------------------------------------------------------------------------
 
 
 Standard inputs - 4 Simple invalid inputs (Name cannot be tagged)
@@ -59,6 +62,7 @@ Jarvis: Type [quit] to terminate this process.
 Jarvis: Got you! Chenkai Hu
 YOU: bye
 Jarvis: See you soon!
+--------------------------------------------------------------------------------
 
 
 Standard inputs - 5 Quit the system
@@ -74,12 +78,12 @@ Jarvis: Type [quit] to terminate this process.
 > quit
 YOU: bye
 Jarvis: See you soon!
+--------------------------------------------------------------------------------
 
 
 
 User inputs - 1 Unexpected inputs when asking name
 --------------------------------------------------------------------------------
-
 Jarvis: Hi! This is Jarvis, how can I help you?
 YOU: do you know my name?
 Jarvis: I am sorry! I don't understand you.
@@ -89,10 +93,12 @@ Jarvis: You didn't tell me your name! Please tell me and I will keep it down.
 Jarvis: I will keep it in my database Eric
 YOU: bye
 Jarvis: See you soon!
+--------------------------------------------------------------------------------
+
+
 
 User inputs - 2 Valid procedure
 --------------------------------------------------------------------------------
-
 Jarvis: Hi! This is Jarvis, how can I help you?
 YOU: who am i
 Jarvis: You didn't tell me your name! Please tell me and I will keep it down.
@@ -102,3 +108,4 @@ YOU: what is my name?
 Jarvis: Nice seeing you again! Steven Jobs
 YOU: bye
 Jarvis: Bye! Take care.
+--------------------------------------------------------------------------------

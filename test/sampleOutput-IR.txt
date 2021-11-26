@@ -1,0 +1,145 @@
+Standard inputs - 1 Entering & leaving IR system
+--------------------------------------------------------------------------------
+(ml) chenkaihu@ChenkaideMacBook-Pro Chatbot-HAIcw % python main.py
+
+Jarvis: Hi! This is Jarvis, how can I help you?
+YOU: qa
+Jarvis: Welcome to search questions. Just type your query in.
+Jarvis: If you are done, Type [Close] to exit.
+> close
+Jarvis: Wish the information is helpful~
+YOU: bye
+Jarvis: Bye! Take care.
+--------------------------------------------------------------------------------
+
+
+
+Standard inputs - 2 Query for questions
+--------------------------------------------------------------------------------
+(ml) chenkaihu@ChenkaideMacBook-Pro Chatbot-HAIcw % python main.py
+
+Jarvis: Hi! This is Jarvis, how can I help you?
+YOU: qa
+Jarvis: Welcome to search questions. Just type your query in.
+Jarvis: If you are done, Type [Close] to exit.
+> how are antibodies used?
+Jarvis: Searching.....
+
+Founded the most relevant question in database.
+
+Q: how are antibodies used in?
+A: The antibody recognizes a unique part of the foreign target, called an antigen .
+
+> close
+Jarvis: Wish the information is helpful~
+YOU: bye
+Jarvis: Bye! Take care.
+--------------------------------------------------------------------------------
+
+
+
+Standard inputs - 3 Query for information
+--------------------------------------------------------------------------------
+(ml) chenkaihu@ChenkaideMacBook-Pro Chatbot-HAIcw % python main.py
+
+Jarvis: Hi! This is Jarvis, how can I help you?
+YOU: qa
+Jarvis: Welcome to search questions. Just type your query in.
+Jarvis: If you are done, Type [Close] to exit.
+> antibodies binding mechanism
+Jarvis: Searching.....
+
+Founded the most relevant information in database.
+
+Using this binding mechanism, an antibody can tag a microbe or an infected cell for attack by other parts of the immune system, or can neutralize its target directly (for example, by blocking a part of a microbe that is essential for its invasion and survival).
+
+> close
+Jarvis: Wish the information is helpful~
+YOU: bye
+Jarvis: Enjoy your day!
+--------------------------------------------------------------------------------
+
+
+
+
+Standard inputs - 4 Query for information
+--------------------------------------------------------------------------------
+(ml) chenkaihu@ChenkaideMacBook-Pro Chatbot-HAIcw % python main.py
+
+Jarvis: Hi! This is Jarvis, how can I help you?
+YOU: qa
+Jarvis: Welcome to search questions. Just type your query in.
+Jarvis: If you are done, Type [Close] to exit.
+> Tell me about Singer Bob Seger
+Jarvis: Searching.....
+
+Founded the most relevant information in database.
+
+Robert Clark "Bob" Seger (born May 6, 1945) is an American rock and roll singer-songwriter , guitarist and pianist .
+
+> close
+Jarvis: Wish the information is helpful~
+YOU: bye
+Jarvis: See you soon!
+--------------------------------------------------------------------------------
+
+
+
+User inputs - 1 Query for question
+--------------------------------------------------------------------------------
+Jarvis: Hi! This is Jarvis, how can I help you?
+YOU: qa
+Jarvis: Welcome to search questions. Just type your query in.
+Jarvis: If you are done, Type [Close] to exit.
+> who is presiden obama
+Jarvis: Searching.....
+
+Founded the most relevant question in database.
+
+Q: when barack obama was born?
+A: Barack Hussein Obama II (; born August 4, 1961) is the 44th and current President of the United States , the first African American to hold the office.
+
+> close
+Jarvis: Wish the information is helpful~
+YOU: bye
+Jarvis: See you soon!
+--------------------------------------------------------------------------------
+
+
+
+User inputs - 2 Query for information (No related info found)
+--------------------------------------------------------------------------------
+Jarvis: Hi! This is Jarvis, how can I help you?
+YOU: qa     
+Jarvis: Welcome to search questions. Just type your query in.
+Jarvis: If you are done, Type [Close] to exit.
+> Tell me about Eason Chen 
+Jarvis: Searching.....
+I am sorry! Nothing relevant found in my database.
+> close
+Jarvis: Wish the information is helpful~
+YOU: bye
+Jarvis: See you soon!
+--------------------------------------------------------------------------------
+
+
+User inputs - 3 Query with unexpected inputs
+--------------------------------------------------------------------------------
+Jarvis: Hi! This is Jarvis, how can I help you?
+YOU: qa
+Jarvis: Welcome to search questions. Just type your query in.
+Jarvis: If you are done, Type [Close] to exit.
+> 
+Jarvis: Searching.....
+I am sorry! Nothing relevant found in my database.
+> who is Jay Chou?
+Jarvis: Searching.....
+I am sorry! Nothing relevant found in my database.
+> bye
+Jarvis: Searching.....
+I am sorry! Nothing relevant found in my database.
+> close
+Jarvis: Wish the information is helpful~
+YOU: bye
+Jarvis: See you soon!
+--------------------------------------------------------------------------------

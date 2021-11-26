@@ -1,0 +1,268 @@
+Standard inputs 1 - Quiz game
+--------------------------------------------------------------------------------
+(ml) chenkaihu@ChenkaideMacBook-Pro Chatbot-HAIcw % python main.py
+
+Jarvis: Hi! This is Jarvis, how can I help you?
+YOU: games
+Jarvis: which game do you want to play?
+        1) little quiz
+        2) word guessing
+        3) small adventure
+> 1
+Jarvis: Before we start the game, please tell me your name.
+> Chenkai
+Jarvis: OK, Chenkai, let's get started.
+Jarvis: Remember, the following answers are only True or False.
+Evaluating your intelligence level...
+Searching database for quiz problems...
+
+Oliver Twist was written by Charles Dickens
+> True
+
+London is the capital of United Kindom.
+> yes
+
+Paris is the captial of France.
+> y
+
+Newton discovered The Three Basic Laws of Mechanics
+> t
+
+Nottingham is the capital of United Kindom.
+> f
+Jarvis: You're finished, Chenkai. You got 5 out of 5 correct.
+YOU: bye
+Jarvis: Bye! Take care.
+--------------------------------------------------------------------------------
+
+
+Standard inputs 2 - Quiz game (with invalid inputs)
+--------------------------------------------------------------------------------
+(ml) chenkaihu@ChenkaideMacBook-Pro Chatbot-HAIcw % python main.py
+
+Jarvis: Hi! This is Jarvis, how can I help you?
+YOU: games
+Jarvis: which game do you want to play?
+        1) little quiz
+        2) word guessing
+        3) small adventure
+> 1
+Jarvis: Before we start the game, please tell me your name.
+> Chenkai
+Jarvis: OK, Chenkai, let's get started.
+Jarvis: Remember, the following answers are only True or False.
+Evaluating your intelligence level...
+Searching database for quiz problems...
+
+London is the capital of United Kindom.
+> 1
+
+Jarvis: Please enter [True/Flase],[Yes/No] for answers.
+Jarvis: I am crude so I will take it as an wrong answer. Just kidding :P.
+
+London is the capital of United Kindom.
+> asdjflkajsdkf 
+
+Jarvis: Please enter [True/Flase],[Yes/No] for answers.
+Jarvis: I am crude so I will take it as an wrong answer. Just kidding :P.
+
+London is the capital of United Kindom.
+> t
+
+Newton discovered The Three Basic Laws of Mechanics
+> t
+
+Water boils at 100 Celsius Degree.
+> f
+
+Deers can be found in ocean.
+> f
+
+Whales can be found in forest.
+> f
+Jarvis: You're finished, Chenkai. You got 4 out of 5 correct.
+YOU: bye
+Jarvis: Enjoy your day!
+--------------------------------------------------------------------------------
+
+
+Standard inputs 3 - Guessing game
+--------------------------------------------------------------------------------
+Jarvis: Hi! This is Jarvis, how can I help you?
+YOU: games
+Jarvis: which game do you want to play?
+        1) little quiz
+        2) word guessing
+        3) small adventure
+> 2
+Jarvis: Before we start the game, please tell me your name.
+> Chenkai
+Jarvis: Good Luck! Chenkai
+The word is of 6 letters. 
+
+_ _ _ _ _ _
+
+Guess a character:a   
+
+_ a _ a _ _
+
+Guess a character:b
+You guessed WRONG letter.
+You have 10 more guesses.
+
+_ a _ a _ _
+
+Guess a character:g
+
+g a _ a _ _
+
+Guess a character:l
+
+g a l a _ _
+
+Guess a character:x
+
+g a l a x _
+
+Guess a character:y
+
+You Win
+The word is:  galaxy
+YOU: Bye
+Jarvis: Enjoy your day!
+--------------------------------------------------------------------------------
+
+
+
+
+User inputs 1 - Quiz game, Bug spotted (Fixed)
+--------------------------------------------------------------------------------
+Jarvis: Hi! This is Jarvis, how can I help you?
+YOU: games
+Jarvis: which game do you want to play?
+        1) little quiz
+        2) word guessing
+        3) small adventure
+> 1
+Jarvis: Before we start the game, please tell me your name.
+> Juekai
+Jarvis: OK, Juekai, let's get started.
+Jarvis: Remember, the following answers are only True or False.
+Evaluating your intelligence level...
+Searching database for quiz problems...
+
+Nottingham is the capital of United Kindom.
+> False
+
+Deers can be found in ocean.
+> False
+
+Newton discovered The Three Basic Laws of Mechanics
+> True
+
+Whales can be found in forest.
+> False
+
+Water boils at 100 Celsius Degree.
+> False
+Traceback (most recent call last):
+  File "main.py", line 5, in <module>
+    bot.general_pipeline()
+  File "/Users/Zjk/Chatbot-HAIcw/Chatbot.py", line 119, in general_pipeline
+    self.intent_match(user_response)
+  File "/Users/Zjk/Chatbot-HAIcw/Chatbot.py", line 91, in intent_match
+    self.user_name = game.pipeline(self.user_name, self.robot_name)
+  File "/Users/Zjk/Chatbot-HAIcw/systems/game.py", line 137, in pipeline
+    print (robot_name + ": You're finished, " + user_name + ". You got", res, "out of 5 correct.")
+TypeError: can only concatenate str (not "list") to str
+--------------------------------------------------------------------------------
+
+
+
+User inputs 2 - Guessing game, invalid inputs
+--------------------------------------------------------------------------------
+Jarvis: Hi! This is Jarvis, how can I help you?
+YOU: games
+Jarvis: which game do you want to play?
+        1) little quiz
+        2) word guessing
+        3) small adventure
+> word guessing
+Jarvis: Before we start the game, please tell me your name.
+> Zeus
+Jarvis: Good Luck! Zeus
+The word is of 11 letters. 
+
+_ _ _ _ _ _ _ _ _ _ _
+
+Guess a character:abcdefg
+Guess only one letter...
+
+_ _ _ _ _ _ _ _ _ _ _
+
+Re-enter your guess:????
+Guess only a letter...
+
+_ _ _ _ _ _ _ _ _ _ _
+
+Re-enter your guess:a
+
+_ a _ _ _ _ a _ _ _ _
+
+Guess a character:m
+
+m a _ _ _ m a _ _ _ _
+
+Guess a character:m
+You have already guessed this letter
+
+m a _ _ _ m a _ _ _ _
+
+Re-enter your guess:r
+You guessed WRONG letter.
+You have 9 more guesses.
+
+m a _ _ _ m a _ _ _ _
+
+Guess a character:r
+You have already guessed this letter
+
+m a _ _ _ m a _ _ _ _
+
+Re-enter your guess:mathmatics
+Guess only one letter...
+
+m a _ _ _ m a _ _ _ _
+
+Re-enter your guess:t
+
+m a t _ _ m a t _ _ _
+
+Guess a character:h
+
+m a t h _ m a t _ _ _
+
+Guess a character:a
+You have already guessed this letter
+
+m a t h _ m a t _ _ _
+
+Re-enter your guess:i
+
+m a t h _ m a t i _ _
+
+Guess a character:c
+
+m a t h _ m a t i c _
+
+Guess a character:s
+
+m a t h _ m a t i c s
+
+Guess a character:e
+
+You Win
+The word is:  mathematics
+YOU: bye
+Jarvis: Have a nice day!
+--------------------------------------------------------------------------------
