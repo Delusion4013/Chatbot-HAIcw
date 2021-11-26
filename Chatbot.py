@@ -1,4 +1,5 @@
 import random
+import json
 
 import systems.game as game
 import systems.information_retrieval as IR
@@ -33,6 +34,13 @@ class Chatbot():
         self.IDENTITY_INPUTS = ("what is my name?", "who am i?","what is my name", "who am i")
         self.GOODBYE_RESPONSES = ("Bye! Take care.", "See you soon!", "Have a nice day!", "Enjoy your day!")
         self.robot_name = robot_name
+        
+    def init_profile(self):    
+        with open(self.user_profile_path, 'r', encoding='utf8', errors='ignore') as fin:
+            profile = json.load(fin)
+            if profile['Name'] != "":
+                self.user_name = profile['Name']
+                self.name_get = True
 
     def show_menu(self):
         """
@@ -49,8 +57,9 @@ class Chatbot():
         print(self.robot_name + ": " + utterance)
 
     def update_database(self):
-        # if (self.)
-        # open(self.user_profile_path, 'rw')
+        profile = {'Name': self.user_name}
+        with open(self.user_profile_path, "w") as f:
+            json.dump(profile, f, indent=4)
         return
 
     def goodbye(self):
@@ -75,9 +84,6 @@ class Chatbot():
             self.robo_utter("You are welcome.")
         elif(user_response in self.IDENTITY_INPUTS):
             (self.user_name, self.name_get) = IM.pipeline(self.robot_name, self.user_name, self.name_get)
-        # elif (user_response == 'transaction'):
-        #     # transaction system
-        #     print('transaction system')
         else:
             self.robo_utter("I am sorry! I don't understand you.")
         return
@@ -86,6 +92,8 @@ class Chatbot():
         """
             The general procedure for chatbot taking in user input and generates response.
         """
+
+        self.init_profile()
         # Propose welcome information
         print(self.robot_name + ": Hi! This is " + self.robot_name + ", how can I help you?")
 
