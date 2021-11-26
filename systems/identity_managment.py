@@ -44,7 +44,7 @@ def pipeline(robot_name, userName, nameGet):
     """
 
     IDENTITY_FIRST_RESPONSES = ("I will remember you ", "I will keep it in my database ", "Got you! ")
-    IDENTITY_SECOND_RESPONSES = ("I remember you, you are ", "I find it in my database, ", "Nice seeing you again! ")
+    IDENTITY_SECOND_RESPONSES = ("I remember you, you are ", "I find it in my database, ", "Nice seeing you again! ", "I know, ")
     name_get = nameGet
     user_name = userName
 

@@ -1,9 +1,4 @@
 import random
-import nltk
-from nltk.corpus import stopwords
-from nltk.tag import pos_tag
-from nltk.tokenize import word_tokenize
-from nltk.tree import Tree;
 
 import systems.game as game
 import systems.information_retrieval as IR
@@ -25,7 +20,6 @@ class Chatbot():
     robot_name = "Jarvis"
 
     # Constants for text matching
-    NAME_INPUTS = ()
     IDENTITY_INPUTS = ()
     IDENTITY_FIRST_RESPONSES = ()
     IDENTITY_SECOND_RESPONSES = ()
@@ -36,9 +30,6 @@ class Chatbot():
 
     def __init__(self, robot_name):
         # Keyword Matching
-        self.NAME_INPUTS = ("my name is", "i am", "call me", "i'm")
-        self.IDENTITY_FIRST_RESPONSES = ("I will remember you ", "I will keep it in my database ", "Got you! ")
-        self.IDENTITY_SECOND_RESPONSES = ("I remember you, you are ", "I find it in my database, ", "Nice seeing you again! ")
         self.IDENTITY_INPUTS = ("what is my name?", "who am i?","what is my name", "who am i")
         self.GOODBYE_RESPONSES = ("Bye! Take care.", "See you soon!", "Have a nice day!", "Enjoy your day!")
         self.robot_name = robot_name
