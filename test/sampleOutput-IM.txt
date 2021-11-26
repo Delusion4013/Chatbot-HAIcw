@@ -1,0 +1,104 @@
+Standard inputs - 1 Pre-loaded result from the database
+--------------------------------------------------------------------------------
+(ml) chenkaihu@ChenkaideMacBook-Pro Chatbot-HAIcw % python main.py
+
+Jarvis: Hi! This is Jarvis, how can I help you?
+YOU: what is my name?
+Jarvis: I find it in my database, Chenkai
+YOU: bye
+Jarvis: Enjoy your day!
+
+
+Standard inputs - 2 Simple valid inputs 
+--------------------------------------------------------------------------------
+(ml) chenkaihu@ChenkaideMacBook-Pro Chatbot-HAIcw % python main.py
+
+Jarvis: Hi! This is Jarvis, how can I help you?
+YOU: who am i?
+Jarvis: You didn't tell me your name! Please tell me and I will keep it down.
+> call me Chenkai HU
+Jarvis: I will remember you Chenkai Hu
+YOU: what is my name?
+Jarvis: I find it in my database, Chenkai Hu
+YOU: bye
+Jarvis: Have a nice day!
+
+
+Standard inputs - 3 Simple invalid inputs (Name cannot be tagged)
+--------------------------------------------------------------------------------
+(ml) chenkaihu@ChenkaideMacBook-Pro Chatbot-HAIcw % python main.py
+
+Jarvis: Hi! This is Jarvis, how can I help you?
+YOU: what is my name?
+Jarvis: You didn't tell me your name! Please tell me and I will keep it down.
+> Chenkai
+Jarvis: No name detected in former input. Please try again...
+Jarvis: Type [quit] to terminate this process.
+> My name is Chenkai
+Jarvis: No name detected in former input. Please try again...
+Jarvis: Type [quit] to terminate this process.
+> my name is Chenkai HU
+Jarvis: I will remember you Chenkai Hu
+YOU: who am i?
+Jarvis: Nice seeing you again! Chenkai Hu
+YOU: bye
+Jarvis: Enjoy your day!
+
+
+Standard inputs - 4 Simple invalid inputs (Name cannot be tagged)
+--------------------------------------------------------------------------------
+(ml) chenkaihu@ChenkaideMacBook-Pro Chatbot-HAIcw % python main.py
+
+Jarvis: Hi! This is Jarvis, how can I help you?
+YOU: who am i?
+Jarvis: You didn't tell me your name! Please tell me and I will keep it down.
+> Chenkai is my name
+Jarvis: No name detected in former input. Please try again...
+Jarvis: Type [quit] to terminate this process.
+> Chenkai HU is my name
+Jarvis: Got you! Chenkai Hu
+YOU: bye
+Jarvis: See you soon!
+
+
+Standard inputs - 5 Quit the system
+--------------------------------------------------------------------------------
+(ml) chenkaihu@ChenkaideMacBook-Pro Chatbot-HAIcw % python main.py
+
+Jarvis: Hi! This is Jarvis, how can I help you?
+YOU: what is my name?
+Jarvis: You didn't tell me your name! Please tell me and I will keep it down.
+> Chenkai
+Jarvis: No name detected in former input. Please try again...
+Jarvis: Type [quit] to terminate this process.
+> quit
+YOU: bye
+Jarvis: See you soon!
+
+
+
+User inputs - 1 Unexpected inputs when asking name
+--------------------------------------------------------------------------------
+
+Jarvis: Hi! This is Jarvis, how can I help you?
+YOU: do you know my name?
+Jarvis: I am sorry! I don't understand you.
+YOU: what is my name?
+Jarvis: You didn't tell me your name! Please tell me and I will keep it down.
+> Eric is my english name
+Jarvis: I will keep it in my database Eric
+YOU: bye
+Jarvis: See you soon!
+
+User inputs - 2 Valid procedure
+--------------------------------------------------------------------------------
+
+Jarvis: Hi! This is Jarvis, how can I help you?
+YOU: who am i
+Jarvis: You didn't tell me your name! Please tell me and I will keep it down.
+> You can call me Steven Jobs
+Jarvis: Got you! Steven Jobs
+YOU: what is my name?
+Jarvis: Nice seeing you again! Steven Jobs
+YOU: bye
+Jarvis: Bye! Take care.
