@@ -52,9 +52,8 @@ class Chatbot():
         """
             Prompt the user with help information on the chatbot's capability.
         """
-        print("1) if you want to ask questions, type [QA]")
+        print("1) if you want to ask questions, type [qa]")
         print("2) if you want to play games, type [games]")
-        print("3) if you want to order something, type [transaction]")
 
     def robo_utter(self, utterance):
         """
