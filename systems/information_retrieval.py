@@ -59,6 +59,7 @@ def response(user_response):
 def search(query):
     """
         Perform search through the QA database based on query.
+        During this method, a model of the database would be built.
 
         Returns:
             - The index of most relevant entriy
