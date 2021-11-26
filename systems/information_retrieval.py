@@ -42,13 +42,13 @@ def response(user_response):
         Based on user's input query, prompt different info.
     """
     (idx, qs) = search(user_response)
-
+    INTERROGATIVE_PRONOUN = ("what", "where", "when", "who", "why","how")
     robo_response = ''
     if(qs <= 0.2):
         robo_response = robo_response + "I am sorry! Nothing relevant found in my database."
         return robo_response
     else:
-        if user_response.endswith('?'):
+        if user_response.endswith('?') or user_response.startswith(INTERROGATIVE_PRONOUN):
             ans = parseAnswer(idx, True)
             robo_response = robo_response+ans
         else:
