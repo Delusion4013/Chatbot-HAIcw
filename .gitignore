@@ -1,5 +1,4 @@
 __pycache__/
 test.py
 .DS_Store
-test.ipynb
 data/user_profile.json
