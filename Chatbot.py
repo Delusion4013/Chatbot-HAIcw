@@ -32,7 +32,7 @@ class Chatbot():
     def __init__(self, robot_name):
         # Keyword Matching
         self.NAME_INPUTS = ("my name is", "i am", "call me", "i'm")
-        self.IDENTITY_INPUTS = ("what is my name?", "who am i?","what is my name", "who am i")
+        self.IDENTITY_INPUTS = ("what is my name?", "who am i?","what is my name", "who am i","do you know me?", "remember me?")
         self.GOODBYE_RESPONSES = ("Bye! Take care.", "See you soon!", "Have a nice day!", "Enjoy your day!")
         self.robot_name = robot_name
         

@@ -134,7 +134,7 @@ def pipeline(user_name, robot_name):
     if selection == "little quiz" or selection == '1':
         print (robot_name + ": OK, " +  name + ", let's get started.")
         res = text_quiz(robot_name)
-        print (robot_name + ": You're finished, " + user_name + ". You got", res, "out of 5 correct.")
+        print (robot_name + ": You're finished, " + name + ". You got", res, "out of 5 correct.")
 
     elif selection == "word guessing" or selection == '2':
         print(robot_name + ": Good Luck! " + name)
