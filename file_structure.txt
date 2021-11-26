@@ -1,0 +1,29 @@
+
+```
+Chatbot-HAIcw
+├─ .gitignore
+├─ Chatbot.py
+├─ README.md
+├─ Report.md
+├─ data
+│  ├─ game_data.json
+│  ├─ qa.csv
+│  ├─ qa.json
+│  └─ user_profile.json
+├─ main.py
+├─ scripts
+│  ├─ explorative.ipynb
+│  └─ script.ipynb
+├─ systems
+│  ├─ game.py
+│  ├─ identity_managment.py
+│  ├─ information_retrieval.py
+│  └─ small_talk.py
+└─ test
+   ├─ sampleOutput-Game.txt
+   ├─ sampleOutput-IM.txt
+   ├─ sampleOutput-IR.txt
+   ├─ sampleOutput-general.txt
+   └─ testScript.md
+
+```

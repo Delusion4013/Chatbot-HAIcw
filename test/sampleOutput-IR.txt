@@ -91,7 +91,7 @@ Jarvis: Hi! This is Jarvis, how can I help you?
 YOU: qa
 Jarvis: Welcome to search questions. Just type your query in.
 Jarvis: If you are done, Type [Close] to exit.
-> who is presiden obama
+> who is president obama
 Jarvis: Searching.....
 
 Founded the most relevant question in database.
