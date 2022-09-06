@@ -106,6 +106,7 @@ class Chatbot():
         """
 
         # self.init_profile()           # disabled for testing
+        
         # Propose welcome information
         print(self.robot_name + ": Hi! This is " + self.robot_name + ", how can I help you?")
 
